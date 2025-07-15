@@ -53,3 +53,13 @@ test('Test case 10', async ({ page }) => {
   await page.getByRole('button', { name: 'Click for JS Alert' }).click();
   await expect(page.locator('#result')).toHaveText('You successfully clicked an alert');
 });
+
+test('Test case 11', async ({ page }) => {
+  await page.getByText('Nested Frames').click();
+  await expect(page).toHaveURL(/.*nested_frames/);
+  const frameTop = page.frameLocator('[name="frame-top"]');
+  const frameMiddle = frameTop.frameLocator('[name="frame-middle"]');
+  await expect(frameMiddle.locator('#content')).toHaveText('MIDDLE');
+  const frameRight = frameTop.frameLocator('[name="frame-right"]');
+  await expect(frameRight.locator('body')).toContainText('RIGHT');
+});
