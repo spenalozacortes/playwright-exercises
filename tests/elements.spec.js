@@ -32,7 +32,7 @@ test('Test case 7', async ({ page }) => {
 test('Test case 8', async ({ page }) => {
   await page.getByText('JavaScript Alerts').click();
   await expect(page).toHaveURL(/.*javascript_alerts/);
-  
+
   page.on('dialog', dialog => dialog.accept('Hello'));
   await page.getByRole('button', { name: 'Click for JS Prompt' }).click();
   await expect(page.locator('#result')).toHaveText('You entered: Hello');
@@ -62,4 +62,15 @@ test('Test case 11', async ({ page }) => {
   await expect(frameMiddle.locator('#content')).toHaveText('MIDDLE');
   const frameRight = frameTop.frameLocator('[name="frame-right"]');
   await expect(frameRight.locator('body')).toContainText('RIGHT');
+});
+
+test('Test case 12', async ({ page }) => {
+  await page.getByText('Multiple Windows').click();
+  await expect(page).toHaveURL(/.*windows/);
+  const [newPage] = await Promise.all([
+    page.context().waitForEvent('page'),
+    page.getByRole('link', { name: 'Click Here' }).click()
+  ]);
+  await expect(newPage).toHaveURL(/.*windows\/new/);
+  await expect(newPage.locator('h3')).toContainText('New Window');
 });
