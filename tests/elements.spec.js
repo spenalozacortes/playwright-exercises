@@ -15,7 +15,16 @@ test('Test case 5', async ({ page }) => {
 
 test('Test case 6', async ({ page }) => {
   await page.getByText('Dynamic Controls').click();
+  await expect(page).toHaveURL(/.*dynamic_controls/);
   await page.getByRole('button', { name: 'Enable' }).click();
   await page.locator('input[type="text"]').fill('some text');
   await expect(page.locator('#message')).toHaveText(`It's enabled!`);
+});
+
+test('Test case 7', async ({ page }) => {
+  await page.getByText('File Upload').click();
+  await expect(page).toHaveURL(/.*upload/);
+  await page.locator('#file-upload').setInputFiles('test.txt');
+  await page.locator('#file-submit').click();
+  expect(page.locator('#uploaded-files')).toContainText('test.txt');
 });
