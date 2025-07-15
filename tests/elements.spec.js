@@ -37,3 +37,11 @@ test('Test case 8', async ({ page }) => {
   await page.getByRole('button', { name: 'Click for JS Prompt' }).click();
   await expect(page.locator('#result')).toHaveText('You entered: Hello');
 });
+
+test('Test case 9', async ({ page }) => {
+  await page.getByText('JavaScript Alerts').click();
+  await expect(page).toHaveURL(/.*javascript_alerts/);
+  page.on('dialog', dialog => dialog.dismiss());
+  await page.getByRole('button', { name: 'Click for JS Confirm' }).click();
+  await expect(page.locator('#result')).toHaveText('You clicked: Cancel');
+});
