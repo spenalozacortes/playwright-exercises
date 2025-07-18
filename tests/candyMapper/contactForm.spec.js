@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 const { HomePage } = require('../../page-objects/homePage').default;
-const { randomString, randomEmail, randomPhoneNumber } = require('../../utils/randomUtils').default;
+const { faker } = require('@faker-js/faker');
 
 test('Fill the contact form with random data', async ({ page }) => {
   const homePage = new HomePage(page);
@@ -10,11 +10,11 @@ test('Fill the contact form with random data', async ({ page }) => {
   await homePage.scrollToContactForm();
 
   await homePage.fillContactForm({
-    firstName: randomString(6),
-    lastName: randomString(8),
-    email: randomEmail(),
-    phone: randomPhoneNumber(),
-    message: randomString(30),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.number(),
+    message: faker.lorem.sentence(10),
   });
 
   await homePage.submitContactForm();
