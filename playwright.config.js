@@ -7,6 +7,7 @@ export default defineConfig({
   use: {
     browserName: 'chromium',
     trace: 'on-first-retry',
+    baseURL: 'https://jsonplaceholder.typicode.com',
   },
 });
 
