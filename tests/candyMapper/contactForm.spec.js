@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
-const { HomePage } = require('../page-objects/homePage').default;
-const { randomString, randomEmail, randomPhoneNumber } = require('../utils/randomUtils').default;
+const { HomePage } = require('../../page-objects/homePage').default;
+const { randomString, randomEmail, randomPhoneNumber } = require('../../utils/randomUtils').default;
 
 test('Fill the contact form with random data', async ({ page }) => {
   const homePage = new HomePage(page);

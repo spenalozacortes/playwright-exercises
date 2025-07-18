@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../page-objects/loginPage').default;
-const { HomePage } = require('../page-objects/homePage').default;
-const { email, password } = require('../test-data/loginData');
+const { LoginPage } = require('../../page-objects/loginPage').default;
+const { HomePage } = require('../../page-objects/homePage').default;
+const { email, password } = require('../../test-data/loginData');
 
 test('Login to CandyMapper and assert user is logged in', async ({ page }) => {
   const homePage = new HomePage(page);
