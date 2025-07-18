@@ -17,7 +17,7 @@ class HomePage {
   }
 
   async goto() {
-    await this.page.goto('https://candymapper.com/');
+    await this.page.goto('/');
   }
 
   async closePopupIfVisible() {
