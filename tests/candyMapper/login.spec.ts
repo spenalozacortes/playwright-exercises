@@ -1,17 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures';
 import { LoginPage } from '../../page-objects/loginPage';
-import { HomePage } from '../../page-objects/homePage';
-import { email, password, successMessages } from '../../test-data/commonData';
+import { successMessages } from '../../test-data/commonData';
 
 const SUCCESS_MESSAGE = successMessages.login;
 
-test('Login to CandyMapper and assert user is logged in', async ({ page }) => {
-  const homePage = new HomePage(page);
-  const loginPage = new LoginPage(page);
-
-  await homePage.goto();
-  await homePage.closePopupIfVisible();
-  await homePage.openLoginForm();
-  await loginPage.login(email, password);
+test('Login to CandyMapper and assert user is logged in', async ({ loggedInPage }) => {
+  const loginPage = new LoginPage(loggedInPage);
   expect(await loginPage.getLoginMessage()).toContain(SUCCESS_MESSAGE);
 }); 
