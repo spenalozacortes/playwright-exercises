@@ -10,7 +10,7 @@ class LoginPage {
     this.loginMessage = this.page.getByRole('heading', { name: 'Account Login' });
   }
 
-  async login(email, password) {
+  async login(email: string, password: string) {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.signInButton.click();
@@ -21,4 +21,4 @@ class LoginPage {
   }
 }
 
-export default { LoginPage }; 
+export { LoginPage }; 

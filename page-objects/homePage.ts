@@ -1,8 +1,19 @@
+import { Page, Locator } from '@playwright/test';
+
 class HomePage {
-  /**
-   * @param {import('@playwright/test').Page} page
-   */
-  constructor(page) {
+  page: Page;
+  popupClose: Locator;
+  joinUsLink: Locator;
+  firstNameInput: Locator;
+  lastNameInput: Locator;
+  emailInput: Locator;
+  phoneInput: Locator;
+  messageInput: Locator;
+  submitButton: Locator;
+  successMessage: Locator;
+  contactFormSection: Locator;
+
+  constructor(page: Page) {
     this.page = page;
     this.popupClose = this.page.locator('[id^=popup-widget][id$=close-icon]');
     this.joinUsLink = this.page.getByRole('navigation').getByRole('link', { name: 'JOIN US' });
@@ -34,7 +45,7 @@ class HomePage {
     await this.contactFormSection.scrollIntoViewIfNeeded();
   }
 
-  async fillContactForm({ firstName, lastName, email, phone, message }) {
+  async fillContactForm({ firstName, lastName, email, phone, message }: { firstName: string; lastName: string; email: string; phone: string; message: string; }) {
     await this.firstNameInput.fill(firstName);
     await this.lastNameInput.fill(lastName);
     await this.emailInput.fill(email);
@@ -52,4 +63,4 @@ class HomePage {
   }
 }
 
-export default { HomePage }; 
+export { HomePage }; 

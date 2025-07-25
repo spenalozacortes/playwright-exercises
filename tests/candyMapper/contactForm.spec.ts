@@ -1,6 +1,6 @@
-const { test, expect } = require('@playwright/test');
-const { HomePage } = require('../../page-objects/homePage').default;
-const { faker } = require('@faker-js/faker');
+import { test, expect } from '@playwright/test';
+import { HomePage } from '../../page-objects/homePage';
+import { faker } from '@faker-js/faker';
 
 const SUCCESS_MESSAGE = 'Thank you for your inquiry! We will get back to you within 48 Years.';
 

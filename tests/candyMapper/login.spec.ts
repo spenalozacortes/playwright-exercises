@@ -1,7 +1,7 @@
-const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../../page-objects/loginPage').default;
-const { HomePage } = require('../../page-objects/homePage').default;
-const { email, password } = require('../../test-data/loginData');
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../../page-objects/loginPage';
+import { HomePage } from '../../page-objects/homePage';
+import { email, password } from '../../test-data/loginData';
 
 const SUCCESS_MESSAGE = 'Account Login';
 
