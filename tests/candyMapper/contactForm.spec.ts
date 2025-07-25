@@ -1,13 +1,10 @@
-import { test, expect } from '@playwright/test';
-import { HomePage } from '../../page-objects/homePage';
+import { test, expect } from '../fixtures';
 import { faker } from '@faker-js/faker';
 import { successMessages } from '../../test-data/commonData';
 
 const SUCCESS_MESSAGE = successMessages.contactForm;
 
-test('Fill the contact form with random data', async ({ page }) => {
-  const homePage = new HomePage(page);
-
+test('Fill the contact form with random data', async ({ homePage }) => {
   await homePage.goto();
   await homePage.closePopupIfVisible();
   await homePage.scrollToContactForm();
