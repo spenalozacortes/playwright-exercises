@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../page-objects/loginPage';
 import { HomePage } from '../../page-objects/homePage';
-import { email, password } from '../../test-data/loginData';
+import { email, password, successMessages } from '../../test-data/commonData';
 
-const SUCCESS_MESSAGE = 'Account Login';
+const SUCCESS_MESSAGE = successMessages.login;
 
 test('Login to CandyMapper and assert user is logged in', async ({ page }) => {
   const homePage = new HomePage(page);
