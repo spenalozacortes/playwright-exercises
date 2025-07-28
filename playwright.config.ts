@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from '@playwright/test';
 
-export default defineConfig({
+const config = defineConfig({
   testDir: './tests',
   reporter: 'html',
   use: {
@@ -9,5 +9,16 @@ export default defineConfig({
     trace: 'on-first-retry',
     baseURL: 'https://candymapper.com/',
   },
+  projects: [
+    {
+      name: 'admin',
+      use: { userRole: 'admin' } as any,
+    },
+    {
+      name: 'user1',
+      use: { userRole: 'user1' } as any,
+    },
+  ],
 });
 
+export default config;
