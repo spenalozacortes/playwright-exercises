@@ -1,4 +1,4 @@
-import { test as base } from '@playwright/test';
+import { test as base, Page } from '@playwright/test';
 import { LoginPage } from '../page-objects/loginPage';
 import { HomePage } from '../page-objects/homePage';
 import { email, password } from '../test-data/commonData';
@@ -6,7 +6,7 @@ import { email, password } from '../test-data/commonData';
 type MyFixtures = {
   loginPage: LoginPage;
   homePage: HomePage;
-  loggedInPage: import('@playwright/test').Page;
+  loggedInPage: Page;
   loggedInLoginPage: LoginPage;
   loggedInHomePage: HomePage;
 };
