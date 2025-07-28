@@ -1,8 +1,13 @@
+import { Page, Locator } from '@playwright/test';
+
 class LoginPage {
-  /**
-   * @param {import('@playwright/test').Page} page
-   */
-  constructor(page) {
+  page: Page;
+  emailInput: Locator;
+  passwordInput: Locator;
+  signInButton: Locator;
+  loginMessage: Locator;
+
+  constructor(page: Page) {
     this.page = page;
     this.emailInput = this.page.getByRole('textbox', { name: 'Email' });
     this.passwordInput = this.page.getByRole('textbox', { name: 'Password' });
